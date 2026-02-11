@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHUM Prompt</title>
+    <meta name="description" content="Tạo prompt AI có cấu trúc cho Web, Hình ảnh và CMD/PowerShell.">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="icon" href="icons/icon-192.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-top">
+                <h1 class="app-title">
+                    <span class="logo-icon">⚡</span> CHUM Prompt
+                </h1>
+                <button id="themeToggle" class="btn-icon" aria-label="Đổi giao diện">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+            <p class="app-subtitle">Mô tả ý tưởng → nhận prompt tiếng Anh có cấu trúc</p>
+        </header>
+
+        <!-- Tabs -->
+        <nav class="tab-nav" role="tablist">
+            <button class="tab-btn active" data-tab="web" role="tab" aria-selected="true" id="tab-web">
+                <span class="tab-emoji">🌐</span> WEB
+            </button>
+            <button class="tab-btn" data-tab="image" role="tab" aria-selected="false" id="tab-image">
+                <span class="tab-emoji">🎨</span> HÌNH ẢNH
+            </button>
+            <button class="tab-btn" data-tab="cmd" role="tab" aria-selected="false" id="tab-cmd">
+                <span class="tab-emoji">⚙️</span> CMD
+            </button>
+        </nav>
+
+        <!-- ===== WEB MODE ===== -->
+        <section class="tab-panel active" id="panel-web" role="tabpanel" aria-labelledby="tab-web">
+            <div class="card">
+                <label class="field-label" for="webInput">Mô tả web app bạn muốn tạo</label>
+                <p class="field-hint">Viết tiếng Việt hoặc tiếng Anh. Ví dụ: tên app, chức năng, trang cần có, có cần
+                    backend GAS/Sheets không…</p>
+                <textarea id="webInput" class="input textarea" rows="7"
+                    placeholder="Ví dụ: Tạo app quản lý phòng trọ tên &quot;CHUM Stay&quot;, có dashboard, quản lý hợp đồng, xuất PDF, dark mode. Backend dùng Google Apps Script + Sheets."></textarea>
+            </div>
+        </section>
+
+        <!-- ===== IMAGE MODE ===== -->
+        <section class="tab-panel" id="panel-image" role="tabpanel" aria-labelledby="tab-image">
+            <div class="card">
+                <label class="field-label" for="imgInput">Mô tả hình ảnh bạn muốn tạo</label>
+                <p class="field-hint">Viết tiếng Việt hoặc tiếng Anh. Ví dụ: chủ thể, phong cách, mood, góc chụp, tỉ lệ…
+                </p>
+                <textarea id="imgInput" class="input textarea" rows="7"
+                    placeholder="Ví dụ: Con mèo ngồi trên mái nhà lúc hoàng hôn, phong cách cinematic, mood ấm áp, tỉ lệ 16:9, bokeh background"></textarea>
+            </div>
+        </section>
+
+        <!-- ===== CMD/TOOL MODE ===== -->
+        <section class="tab-panel" id="panel-cmd" role="tabpanel" aria-labelledby="tab-cmd">
+            <div class="card">
+                <label class="field-label" for="cmdInput">Mô tả công cụ CMD/PowerShell bạn muốn tạo</label>
+                <p class="field-hint">Viết tiếng Việt hoặc tiếng Anh. Ví dụ: tên tool, mục đích, loại script (BAT/PS1),
+                    tính năng cần có…</p>
+                <textarea id="cmdInput" class="input textarea" rows="7"
+                    placeholder="Ví dụ: Tool dọn rác tên &quot;CHUM Cleaner&quot;, dạng PowerShell, có menu, color output, log file, kiểm tra quyền admin"></textarea>
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <div class="actions">
+            <button id="btnGenerate" class="btn btn-primary">
+                <span>⚡</span> Tạo Prompt
+            </button>
+            <div class="actions-row">
+                <button id="btnCopy" class="btn btn-secondary" disabled>
+                    <span>📋</span> Sao chép
+                </button>
+                <button id="btnReset" class="btn btn-ghost">
+                    <span>🔄</span> Xóa
+                </button>
+            </div>
+        </div>
+
+        <!-- Preview -->
+        <section id="previewSection" class="preview-section hidden">
+            <div class="preview-header">
+                <h2 class="preview-title">📄 Prompt đã tạo</h2>
+                <span id="charCount" class="char-count"></span>
+            </div>
+            <pre id="previewOutput" class="preview-output"></pre>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>CHUM Prompt &mdash; Nhanh · Gọn · Dễ dùng</p>
+        </footer>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast hidden">Đã sao chép!</div>
+
+    <script src="assets/app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(() => { });
+        }
+    </script>
+</body>
+
+</html>

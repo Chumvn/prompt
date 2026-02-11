@@ -1,0 +1,579 @@
+/* ========================================
+   CHUM Prompt — Neumorphism Design System
+   ======================================== */
+
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --max-w: 560px;
+}
+
+/* ---------- Dark Theme (default) ---------- */
+[data-theme="dark"] {
+    --bg: #1a1a2e;
+    --bg-card: #1e1e34;
+    --text: #e4e4f0;
+    --text-muted: #8888aa;
+    --accent: #7c5cfc;
+    --accent-glow: rgba(124, 92, 252, 0.35);
+    --shadow-out: 6px 6px 14px rgba(0, 0, 0, 0.5), -6px -6px 14px rgba(50, 50, 80, 0.15);
+    --shadow-in: inset 4px 4px 10px rgba(0, 0, 0, 0.4), inset -4px -4px 10px rgba(50, 50, 80, 0.12);
+    --shadow-btn: 4px 4px 10px rgba(0, 0, 0, 0.45), -4px -4px 10px rgba(50, 50, 80, 0.12);
+    --border: rgba(255, 255, 255, 0.06);
+    --tab-active-bg: var(--accent);
+    --tab-active-text: #fff;
+    --preview-bg: #12121f;
+    --toggle-bg: #2a2a44;
+    --toggle-active: var(--accent);
+    --toast-bg: #2a2a44;
+}
+
+/* ---------- Light Theme ---------- */
+[data-theme="light"] {
+    --bg: #e8e8f0;
+    --bg-card: #e0e0ec;
+    --text: #2a2a3e;
+    --text-muted: #6a6a8a;
+    --accent: #6c4ce6;
+    --accent-glow: rgba(108, 76, 230, 0.25);
+    --shadow-out: 6px 6px 14px rgba(180, 180, 200, 0.5), -6px -6px 14px rgba(255, 255, 255, 0.8);
+    --shadow-in: inset 4px 4px 10px rgba(180, 180, 200, 0.45), inset -4px -4px 10px rgba(255, 255, 255, 0.7);
+    --shadow-btn: 4px 4px 10px rgba(180, 180, 200, 0.45), -4px -4px 10px rgba(255, 255, 255, 0.8);
+    --border: rgba(0, 0, 0, 0.06);
+    --tab-active-bg: var(--accent);
+    --tab-active-text: #fff;
+    --preview-bg: #d6d6e2;
+    --toggle-bg: #c8c8d8;
+    --toggle-active: var(--accent);
+    --toast-bg: #d6d6e2;
+}
+
+body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: background var(--transition), color var(--transition);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- App Container ---------- */
+.app-container {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 20px 16px 40px;
+}
+
+/* ---------- Header ---------- */
+.app-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+}
+
+.app-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-icon {
+    font-size: 1.5rem;
+    filter: drop-shadow(0 0 8px var(--accent-glow));
+}
+
+.app-subtitle {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 4px;
+    font-weight: 400;
+}
+
+/* Theme toggle */
+.btn-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-btn);
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.15rem;
+    transition: box-shadow var(--transition), background var(--transition);
+}
+
+.btn-icon:active {
+    box-shadow: var(--shadow-in);
+}
+
+/* ---------- Tab Navigation ---------- */
+.tab-nav {
+    display: flex;
+    gap: 6px;
+    background: var(--bg-card);
+    padding: 5px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-in);
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 10px 4px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--text-muted);
+    font-family: var(--font);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.tab-btn.active {
+    background: var(--tab-active-bg);
+    color: var(--tab-active-text);
+    box-shadow: 0 2px 12px var(--accent-glow);
+}
+
+.tab-btn:not(.active):hover {
+    color: var(--text);
+    background: rgba(124, 92, 252, 0.08);
+}
+
+.tab-emoji {
+    font-size: 1rem;
+}
+
+/* ---------- Panels ---------- */
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+    animation: fadeSlide 0.3s ease;
+}
+
+@keyframes fadeSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Cards ---------- */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow-out);
+    transition: box-shadow var(--transition), background var(--transition);
+}
+
+/* ---------- Field Label ---------- */
+.field-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.field-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+    margin: -4px 0 10px;
+    line-height: 1.4;
+}
+
+/* ---------- Inputs ---------- */
+.input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-in);
+    transition: border var(--transition), box-shadow var(--transition), background var(--transition);
+    outline: none;
+}
+
+.input:focus {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-in), 0 0 0 3px var(--accent-glow);
+}
+
+.input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 60px;
+    line-height: 1.5;
+}
+
+.select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='%238888aa'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+}
+
+/* 2-column row */
+.row-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* ---------- Toggle Switch ---------- */
+.toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toggle-label {
+    font-size: 0.88rem;
+    font-weight: 500;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 48px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    inset: 0;
+    background: var(--toggle-bg);
+    border-radius: 26px;
+    cursor: pointer;
+    transition: background var(--transition);
+    box-shadow: var(--shadow-in);
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 3px;
+    top: 3px;
+    background: var(--text-muted);
+    border-radius: 50%;
+    transition: all var(--transition);
+}
+
+.toggle-switch input:checked+.toggle-slider {
+    background: var(--toggle-active);
+}
+
+.toggle-switch input:checked+.toggle-slider::before {
+    transform: translateX(22px);
+    background: #fff;
+}
+
+/* ---------- Checkbox Grid ---------- */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition);
+}
+
+.checkbox-item:hover {
+    background: rgba(124, 92, 252, 0.06);
+}
+
+.checkbox-item input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--text-muted);
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: all var(--transition);
+}
+
+.checkbox-item input[type="checkbox"]:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.checkbox-item input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: -1px;
+    left: 2px;
+    font-size: 13px;
+    color: #fff;
+    font-weight: 700;
+}
+
+/* ---------- Action Buttons ---------- */
+.actions {
+    margin: 24px 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.actions-row {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--font);
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 4px 16px var(--accent-glow);
+    width: 100%;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 24px var(--accent-glow);
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+.btn-secondary {
+    flex: 1;
+    background: var(--bg-card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-btn);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    box-shadow: var(--shadow-out);
+}
+
+.btn-secondary:active:not(:disabled) {
+    box-shadow: var(--shadow-in);
+}
+
+.btn-secondary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.btn-ghost {
+    flex: 1;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+}
+
+.btn-ghost:hover {
+    color: var(--text);
+    background: rgba(124, 92, 252, 0.06);
+}
+
+/* ---------- Preview Section ---------- */
+.preview-section {
+    margin-top: 8px;
+}
+
+.preview-section.hidden {
+    display: none;
+}
+
+.preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.preview-title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.char-count {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.preview-output {
+    background: var(--preview-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+    box-shadow: var(--shadow-in);
+    max-height: 500px;
+    overflow-y: auto;
+    transition: background var(--transition), color var(--transition);
+}
+
+/* ---------- Footer ---------- */
+.app-footer {
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.app-footer p {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* ---------- Toast ---------- */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--toast-bg);
+    color: var(--text);
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.toast.hidden {
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 3px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 400px) {
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .row-2col {
+        grid-template-columns: 1fr;
+    }
+
+    .app-title {
+        font-size: 1.4rem;
+    }
+}
