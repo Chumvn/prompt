@@ -46,34 +46,93 @@
 
         <!-- ===== WEB MODE ===== -->
         <section class="tab-panel active" id="panel-web" role="tabpanel" aria-labelledby="tab-web">
+            <!-- Sub-mode selector -->
             <div class="card">
-                <label class="field-label" for="webInput">Mô tả web app bạn muốn tạo</label>
-                <p class="field-hint">Viết tiếng Việt hoặc tiếng Anh. Ví dụ: tên app, chức năng, trang cần có, có cần
-                    backend GAS/Sheets không…</p>
+                <label class="field-label">Loại dự án</label>
+                <div class="sub-mode-nav">
+                    <button class="sub-mode-btn active" data-submode="pages" id="submode-pages">
+                        🌍 GitHub Pages
+                    </button>
+                    <button class="sub-mode-btn" data-submode="gas" id="submode-gas">
+                        📊 GAS + Sheets
+                    </button>
+                </div>
+                <p class="sub-mode-desc" id="submodeDesc">Frontend tĩnh: HTML/CSS/JS → deploy lên GitHub Pages</p>
+            </div>
+
+            <!-- Auto-fill buttons -->
+            <div class="card">
+                <label class="field-label">Điền nhanh</label>
+                <div class="autofill-grid">
+                    <button class="autofill-btn" data-fill="web-portfolio">🎯 Portfolio</button>
+                    <button class="autofill-btn" data-fill="web-dashboard">📊 Dashboard</button>
+                    <button class="autofill-btn" data-fill="web-landing">🚀 Landing Page</button>
+                    <button class="autofill-btn" data-fill="web-rental">🏠 Quản lý phòng</button>
+                    <button class="autofill-btn" data-fill="web-invoice">🧾 Hóa đơn</button>
+                    <button class="autofill-btn" data-fill="web-todo">📝 Todo App</button>
+                    <button class="autofill-btn" data-fill="web-blog">📰 Blog</button>
+                    <button class="autofill-btn" data-fill="web-calculator">🔢 Calculator</button>
+                </div>
+            </div>
+
+            <!-- Main input -->
+            <div class="card">
+                <label class="field-label" for="webInput">Mô tả chi tiết</label>
+                <p class="field-hint">Viết tiếng Việt hoặc Anh. Bấm nút ở trên để điền mẫu, hoặc tự viết.</p>
                 <textarea id="webInput" class="input textarea" rows="7"
-                    placeholder="Ví dụ: Tạo app quản lý phòng trọ tên &quot;CHUM Stay&quot;, có dashboard, quản lý hợp đồng, xuất PDF, dark mode. Backend dùng Google Apps Script + Sheets."></textarea>
+                    placeholder="Ví dụ: App quản lý phòng trọ tên CHUM Stay, có dashboard, CRUD phòng, hợp đồng, xuất PDF, dark mode…"></textarea>
             </div>
         </section>
 
         <!-- ===== IMAGE MODE ===== -->
         <section class="tab-panel" id="panel-image" role="tabpanel" aria-labelledby="tab-image">
+            <!-- Auto-fill buttons -->
             <div class="card">
-                <label class="field-label" for="imgInput">Mô tả hình ảnh bạn muốn tạo</label>
-                <p class="field-hint">Viết tiếng Việt hoặc tiếng Anh. Ví dụ: chủ thể, phong cách, mood, góc chụp, tỉ lệ…
-                </p>
+                <label class="field-label">Điền nhanh</label>
+                <div class="autofill-grid">
+                    <button class="autofill-btn" data-fill="img-portrait">👤 Chân dung</button>
+                    <button class="autofill-btn" data-fill="img-landscape">🌄 Phong cảnh</button>
+                    <button class="autofill-btn" data-fill="img-product">📦 Sản phẩm</button>
+                    <button class="autofill-btn" data-fill="img-anime">🎌 Anime</button>
+                    <button class="autofill-btn" data-fill="img-logo">💎 Logo</button>
+                    <button class="autofill-btn" data-fill="img-food">🍜 Đồ ăn</button>
+                    <button class="autofill-btn" data-fill="img-architecture">🏛️ Kiến trúc</button>
+                    <button class="autofill-btn" data-fill="img-fantasy">🐉 Fantasy</button>
+                </div>
+            </div>
+
+            <!-- Main input -->
+            <div class="card">
+                <label class="field-label" for="imgInput">Mô tả hình ảnh</label>
+                <p class="field-hint">Viết tiếng Việt hoặc Anh. Bấm nút ở trên để điền mẫu, hoặc tự viết.</p>
                 <textarea id="imgInput" class="input textarea" rows="7"
-                    placeholder="Ví dụ: Con mèo ngồi trên mái nhà lúc hoàng hôn, phong cách cinematic, mood ấm áp, tỉ lệ 16:9, bokeh background"></textarea>
+                    placeholder="Ví dụ: Con mèo ngồi trên mái nhà lúc hoàng hôn, phong cách cinematic, mood ấm áp, bokeh"></textarea>
             </div>
         </section>
 
         <!-- ===== CMD/TOOL MODE ===== -->
         <section class="tab-panel" id="panel-cmd" role="tabpanel" aria-labelledby="tab-cmd">
+            <!-- Auto-fill buttons -->
             <div class="card">
-                <label class="field-label" for="cmdInput">Mô tả công cụ CMD/PowerShell bạn muốn tạo</label>
-                <p class="field-hint">Viết tiếng Việt hoặc tiếng Anh. Ví dụ: tên tool, mục đích, loại script (BAT/PS1),
-                    tính năng cần có…</p>
+                <label class="field-label">Điền nhanh</label>
+                <div class="autofill-grid">
+                    <button class="autofill-btn" data-fill="cmd-cleaner">🧹 Dọn rác</button>
+                    <button class="autofill-btn" data-fill="cmd-backup">💾 Backup</button>
+                    <button class="autofill-btn" data-fill="cmd-network">🌐 Mạng</button>
+                    <button class="autofill-btn" data-fill="cmd-sysinfo">💻 Hệ thống</button>
+                    <button class="autofill-btn" data-fill="cmd-rename">📂 Đổi tên file</button>
+                    <button class="autofill-btn" data-fill="cmd-wifi">📡 WiFi</button>
+                    <button class="autofill-btn" data-fill="cmd-registry">🔧 Registry</button>
+                    <button class="autofill-btn" data-fill="cmd-deploy">🚀 Auto Deploy</button>
+                </div>
+            </div>
+
+            <!-- Main input -->
+            <div class="card">
+                <label class="field-label" for="cmdInput">Mô tả công cụ</label>
+                <p class="field-hint">Viết tiếng Việt hoặc Anh. Bấm nút ở trên để điền mẫu, hoặc tự viết.</p>
                 <textarea id="cmdInput" class="input textarea" rows="7"
-                    placeholder="Ví dụ: Tool dọn rác tên &quot;CHUM Cleaner&quot;, dạng PowerShell, có menu, color output, log file, kiểm tra quyền admin"></textarea>
+                    placeholder="Ví dụ: Tool dọn rác tên CHUM Cleaner, PowerShell, có menu, color output, log file, kiểm tra admin"></textarea>
             </div>
         </section>
 
